@@ -28,7 +28,6 @@ class AuthController extends Controller
             $validatedData['password'] = Hash::make($validatedData['password']);
             $user = User::create($validatedData);
     
-
             // Generate OTP
             $otp = rand(1000,9999);
             
@@ -69,7 +68,6 @@ class AuthController extends Controller
         return response()->json(['message' => 'Email verified successfully'], 200);
     }
     
-
      //Login User
      public function login(Request $request)
      {
@@ -106,17 +104,11 @@ class AuthController extends Controller
         }
     }
 
-
-
-
-    
-
-
      //logut
      public function logout(Request $request)
      {
          $request->user()->tokens()->delete();
          return response()->json(['message' => 'Logout Successfully']);
      }
-
+     
 }

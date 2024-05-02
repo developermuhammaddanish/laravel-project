@@ -17,6 +17,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['auth:sanctum']], function () {
     
     Route::group(['middleware' => ['scopes:*']],function () {
+
         Route::controller(ProductController::class)->group(function(){
             Route::get('show_product','ShowProduct');
             Route::get('fatch_product/{id}','FatchProduct');
@@ -34,24 +35,18 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::delete('delete_category/{id}','DeleteCategory');
         });
 
-       
-        
-        Route::post('logout',[AuthController::class,'logout']);
-
         Route::get('auth/user',function(){
             return Request()->user();
         });
+
+        Route::post('logout',[AuthController::class,'logout']);
     });
     
     Route::group(['middleware' => ['scopes:verify-otp']],function () {
         Route::post('verify-email', [AuthController::class,'verifyEmail']);
     });
-    
+
 });
-
-
-
-
 
 Route::post('register', [AuthController::class,'register']);
 Route::post('login', [AuthController::class,'login']);

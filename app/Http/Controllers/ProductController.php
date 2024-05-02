@@ -108,6 +108,7 @@ class ProductController extends Controller
         }
     }
 
+    // search product
     public function searchProduct(Request $request)
     {
         $search = $request->search;
@@ -130,6 +131,4 @@ class ProductController extends Controller
         }
     }
     
-
-
 }
